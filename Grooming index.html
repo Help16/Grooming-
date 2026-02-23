@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groom & Go | Premium Pet Care</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css " rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com ">
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400 ;600;700;800&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#E0F2F1',
+                            darkBlue: '#00695C',
+                            cream: '#FFF8E1',
+                            pink: '#FCE4EC',
+                            darkPink: '#C2185B',
+                            coral: '#FFAB91',
+                            lavender: '#E1BEE7',
+                            mint: '#C8E6C9',
+                            text: '#374151',
+                            lightText: '#6B7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        heading: ['Nunito', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: #374151;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00695C 0%, #C2185B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pattern-grid {
+            background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00695C;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #004d40;
+        }
+
+        /* FAQ Specific Styles */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+            color: #00695C;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding 0.4s ease;
+            opacity: 0;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-72 h-72 bg-brand-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-72 h-72 bg-brand-blue rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-1/3 w-72 h-72 bg-brand-cream rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <!-- Logo -->
+                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <img src="https://i.imgur.com/WS1kvll.png " alt="Groom & Go Logo" class="w-10 h-10 object-contain">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-2xl text-gray-800 tracking-tight leading-none">Groom & Go</span>
+                        <span class="text-xs text-brand-darkBlue font-semibold tracking-wider">PREMIUM PET CARE</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-1 items-center bg-white/80 backdrop-blur-md rounded-full px-2 py-1 shadow-sm">
+                    <a href="#about" class="px-4 py-2 text-gray-600 hover:text-brand-darkBlue font-semibold transition rounded-full hover:bg-brand-blue/30">About</a>
+                    <a href="#services" class="px-4 py-2 text-gray-600 hover:text-brand-darkBlue font-semibold transition rounded-full hover:bg-brand-blue/30">Services</a>
+                    <a href="#walking" class="px-4 py-2 text-gray-600 hover:text-brand-darkBlue font-semibold transition rounded-full hover:bg-brand-blue/30">Dog Walking</a>
+                    <a href="#why-us" class="px-4 py-2 text-gray-600 hover:text-brand-darkBlue font-semibold transition rounded-full hover:bg-brand-blue/30">Why Us</a>
+                    <a href="#faq" class="px-4 py-2 text-gray-600 hover:text-brand-darkBlue font-semibold transition rounded-full hover:bg-brand-blue/30">FAQ</a>
+                    <a href="#contact" class="ml-2 px-6 py-2 bg-gradient-to-r from-brand-darkBlue to-teal-600 text-white rounded-full font-bold hover:shadow-lg transition transform hover:-translate-y-0.5">Book Now</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none bg-white p-2 rounded-full shadow-md">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white/95 backdrop-blur-lg shadow-xl border-t border-gray-100">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#about" class="block px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-brand-darkBlue hover:bg-brand-blue/20">About</a>
+                <a href="#services" class="block px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-brand-darkBlue hover:bg-brand-blue/20">Services</a>
+                <a href="#walking" class="block px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-brand-darkBlue hover:bg-brand-blue/20">Dog Walking</a>
+                <a href="#faq" class="block px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-brand-darkBlue hover:bg-brand-blue/20">FAQ</a>
+                <a href="#contact" class="block px-4 py-3 rounded-xl text-base font-medium text-white font-bold bg-brand-darkBlue mt-4 text-center">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand-pink to-brand-cream text-brand-darkPink text-sm font-bold mb-6 fade-in-up shadow-sm">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>Premium Pet Care in Your Neighborhood</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight fade-in-up" style="transition-delay: 100ms;">
+                        Fresh. Fluffy. <br/>
+                        <span class="gradient-text">Ready to Go.</span>
+                    </h1>
+                    <p class="mt-4 text-xl text-gray-600 mb-8 leading-relaxed fade-in-up" style="transition-delay: 200ms;">
+                        Professional Grooming & <span class="text-brand-darkBlue font-bold">Personalized Dog Walks</span> designed to keep your best friend clean, confident, and cared for.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in-up" style="transition-delay: 300ms;">
+                        <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-brand-darkBlue to-teal-600 text-white rounded-full font-bold text-lg hover:shadow-xl transition transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
+                            Book a Session 
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#walking" class="px-8 py-4 bg-white text-gray-700 border-2 border-gray-200 rounded-full font-bold text-lg hover:border-brand-darkBlue hover:text-brand-darkBlue transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-person-walking"></i> Explore Walking
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start fade-in-up" style="transition-delay: 400ms;">
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                            <i class="fa-solid fa-certificate text-yellow-500"></i>
+                            <span class="text-sm font-semibold text-gray-700">Certified</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                            <i class="fa-solid fa-heart text-red-500"></i>
+                            <span class="text-sm font-semibold text-gray-700">Loving Care</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                            <i class="fa-solid fa-shield-dog text-brand-darkBlue"></i>
+                            <span class="text-sm font-semibold text-gray-700">Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative fade-in-up" style="transition-delay: 500ms;">
+                    <div class="relative">
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-brand-pink rounded-full opacity-60 animate-float"></div>
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-blue rounded-full opacity-60 animate-float-delayed"></div>
+                        
+                        <!-- Main Image - Dog being petted -->
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <img src="https://i.imgur.com/Qc3MdpR.png " alt="Happy Dog Being Groomed" class="w-full h-[500px] object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                        </div>
+                        
+                        <!-- Floating Card -->
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl z-20 max-w-xs animate-float">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                    <i class="fa-solid fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Trusted by</p>
+                                    <p class="font-bold text-gray-800">Happy Dogs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg " viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-20 bg-white relative pattern-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 fade-in-up">
+                    <div class="inline-block px-3 py-1 bg-brand-cream text-brand-darkBlue rounded-full text-sm font-bold mb-4">About Us</div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">We Treat Your Pets Like Our Own Family</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        At Groom & Go, we believe that every dog deserves to look and feel their absolute best. We provide professional grooming services and one-on-one personalized dog walks designed specifically for your dog's unique needs.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Safety is our top priority. We are fully <strong class="text-brand-darkBlue">First Aid Certified</strong> and <strong class="text-brand-darkBlue">Grooming Certified</strong>, ensuring your dog's safety, comfort, and emotional well-being are maintained at all times.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4 p-4 bg-brand-blue/20 rounded-2xl">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-darkBlue shadow-sm">
+                                <i class="fa-solid fa-shield-heart text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Safety First</h4>
+                                <p class="text-sm text-gray-500">Certified & Assured</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-brand-pink/20 rounded-2xl">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-darkPink shadow-sm">
+                                <i class="fa-solid fa-spa text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Stress-Free</h4>
+                                <p class="text-sm text-gray-500">Calm Environment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 relative fade-in-up">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 mt-8">
+                            <img src="https://i.imgur.com/K0Lshtt.jpeg " alt="Grooming" class="rounded-2xl shadow-lg w-full h-48 object-cover transform hover:scale-105 transition-transform">
+                            <img src="https://i.imgur.com/ZsQFNJr.jpeg " alt="Happy Dog" class="rounded-2xl shadow-lg w-full h-64 object-cover transform hover:scale-105 transition-transform">
+                        </div>
+                        <div class="space-y-4">
+                            <img src="https://i.imgur.com/1H7e58d.jpeg " alt="Dog Walk" class="rounded-2xl shadow-lg w-full h-64 object-cover transform hover:scale-105 transition-transform">
+                            <div class="bg-brand-darkBlue rounded-2xl shadow-lg w-full h-48 flex items-center justify-center text-white p-6 text-center">
+                                <div>
+                                    <p class="text-4xl font-bold mb-2">3+</p>
+                                    <p class="text-sm opacity-90">Years of Excellence in Pet Care</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grooming Services -->
+    <section id="services" class="py-20 bg-gradient-to-b from-white to-brand-cream/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="inline-block px-3 py-1 bg-brand-pink text-brand-darkPink rounded-full text-sm font-bold mb-4">Grooming Services</span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Tailored Care for Every Coat</h2>
+                <p class="text-gray-600 text-lg">From deep cleaning to stylish trims, we offer comprehensive services to keep your dog healthy, comfortable, and looking fabulous.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards with Enhanced Styling -->
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-brand-blue relative overflow-hidden group fade-in-up">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-shower"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Bathing & Deep Cleaning</h4>
+                    <p class="text-gray-600 mb-4">Premium, hypoallergenic shampoos tailored to your dog's skin. Deep cleaning removes dirt, odors, and allergens.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Hypoallergenic Products</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Blow Dry & Fluff</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-brand-pink relative overflow-hidden group fade-in-up" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-pink/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Full Coat Grooming & Styling</h4>
+                    <p class="text-gray-600 mb-4">Precision haircuts based on breed standards or your preference. We shape, trim, and detail to perfection.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Breed Specific Cuts</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Creative Styling</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-yellow-400 relative overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-100 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">De-shedding Treatments</h4>
+                    <p class="text-gray-600 mb-4"><strong class="text-orange-600">Reduce home hair by up to 90%!</strong> Specialized treatment removes loose undercoat before it falls on your floor.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Undercoat Removal</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Less Vacuuming</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-purple-400 relative overflow-hidden group fade-in-up">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Nail & Paw Care</h4>
+                    <p class="text-gray-600 mb-4">Essential for posture and comfort. Careful nail trimming and paw pad grooming to prevent slipping.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Safe Nail Clipping</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Paw Moisturizing</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-red-400 relative overflow-hidden group fade-in-up" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-100 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-bandage"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Matted Fur Restoration</h4>
+                    <p class="text-gray-600 mb-4">Mats are painful and restrict blood flow. We gently work through tangles to restore coat health.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Pain-free Dematting</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Coat Conditioning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-3xl shadow-lg border-b-4 border-green-400 relative overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 shadow-lg transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-baby"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Puppy Introduction</h4>
+                    <p class="text-gray-600 mb-4">Gentle first experience for puppies under 6 months. Desensitization to create positive grooming foundations.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Positive Reinforcement</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Short & Sweet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Dog Walking Section -->
+    <section id="walking" class="py-20 bg-brand-darkBlue text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg \'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-bold mb-6">
+                        <i class="fa-solid fa-person-walking"></i>
+                        <span>The "Go" in Groom & Go</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Personalized Dog Walking</h2>
+                    <p class="text-xl text-blue-100 mb-6 leading-relaxed">
+                        Movement, stimulation, and confidence-building. We provide structured one-on-one walks tailored to your dog's energy level and personality.
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-bolt text-yellow-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Energy Matching</h4>
+                                <p class="text-blue-100">High-energy dogs get brisk walks; seniors enjoy gentle strolls. We match the pace to your pup.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-brain text-pink-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Mental Stimulation</h4>
+                                <p class="text-blue-100">Sniff walks, trail exploration, and confidence-building exercises to engage their mind.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-user-shield text-green-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">One-on-One Attention</h4>
+                                <p class="text-blue-100">Never group walks. Your dog gets 100% of our focus, ensuring safety and personalized care.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-darkBlue rounded-full font-bold text-lg hover:bg-brand-cream transition shadow-lg">
+                        <i class="fa-brands fa-whatsapp"></i> Book a Walk
+                    </a>
+                </div>
+                
+                <div class="relative fade-in-up">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://i.imgur.com/gV8T4EP.jpeg " alt="Dog Walking" class="w-full h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBlue/80 via-transparent to-transparent"></div>
+                        
+                        <!-- Stats Overlay -->
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div class="bg-white/20 backdrop-blur-md rounded-2xl p-4">
+                                    <p class="text-3xl font-bold">30-120</p>
+                                    <p class="text-xs text-blue-100">Min Walks</p>
+                                </div>
+                                <div class="bg-white/20 backdrop-blur-md rounded-2xl p-4">
+                                    <p class="text-3xl font-bold">1:1</p>
+                                    <p class="text-xs text-blue-100">Ratio</p>
+                                </div>
+                                <div class="bg-white/20 backdrop-blur-md rounded-2xl p-4">
+                                    <p class="text-3xl font-bold">GPS</p>
+                                    <p class="text-xs text-blue-100">Tracked</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-20 bg-brand-cream/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-brand-darkBlue to-teal-700 p-10 rounded-3xl shadow-xl text-white relative overflow-hidden fade-in-up">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                    <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl mb-6 backdrop-blur-sm">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-blue-100 leading-relaxed text-lg">
+                        To provide safe, hygienic, and professional grooming and walking services that prioritize each dog's health, comfort, and emotional well-being above all else.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-10 rounded-3xl shadow-xl border-2 border-brand-pink/30 relative overflow-hidden fade-in-up" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-brand-pink/20 rounded-full -mr-20 -mt-20"></div>
+                    <div class="w-14 h-14 bg-brand-pink/20 rounded-2xl flex items-center justify-center text-brand-darkPink text-2xl mb-6">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        To become the most trusted pet care brand known for excellence, safety, and personalized attention, setting the standard for compassionate pet care in our community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="inline-block px-3 py-1 bg-brand-cream text-brand-darkBlue rounded-full text-sm font-bold mb-4">Why Choose Us</span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">The Groom & Go Difference</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">What makes us special? It's the little things we do to ensure your pet has the best experience possible.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="group text-center p-8 rounded-3xl bg-gradient-to-b from-white to-brand-blue/20 hover:shadow-xl transition-all duration-300 border border-gray-100 fade-in-up">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg transform group-hover:scale-110 transition-transform rotate-3 group-hover:rotate-6">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Certified Experts</h4>
+                    <p class="text-gray-600 text-sm">Fully First Aid and Grooming certified professionals.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="group text-center p-8 rounded-3xl bg-gradient-to-b from-white to-brand-pink/20 hover:shadow-xl transition-all duration-300 border border-gray-100 fade-in-up" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg transform group-hover:scale-110 transition-transform -rotate-3 group-hover:-rotate-6">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Calm Handling</h4>
+                    <p class="text-gray-600 text-sm">Fear-free techniques for anxious or nervous dogs.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="group text-center p-8 rounded-3xl bg-gradient-to-b from-white to-purple-100 hover:shadow-xl transition-all duration-300 border border-gray-100 fade-in-up" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg transform group-hover:scale-110 transition-transform rotate-3 group-hover:rotate-6">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Individual Attention</h4>
+                    <p class="text-gray-600 text-sm">One-on-one sessions. Never caged or left unattended.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="group text-center p-8 rounded-3xl bg-gradient-to-b from-white to-green-100 hover:shadow-xl transition-all duration-300 border border-gray-100 fade-in-up" style="transition-delay: 300ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg transform group-hover:scale-110 transition-transform -rotate-3 group-hover:-rotate-6">
+                        <i class="fa-solid fa-person-walking-with-cane"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Post-Groom Walk</h4>
+                    <p class="text-gray-600 text-sm">Unique trail stroke walk after drying to stretch and show off!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-brand-cream/30 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row fade-in-up">
+                
+                <!-- Contact Info -->
+                <div class="bg-gradient-to-br from-brand-darkBlue to-teal-800 p-10 md:w-2/5 text-white flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1">
+                                <img src="https://i.imgur.com/WS1kvll.png " alt="Groom & Go Logo" class="w-full h-full object-contain">
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Get in Touch</h3>
+                                <p class="text-blue-200 text-sm">We're here to help!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Owner & Groomer</p>
+                                    <p class="font-bold text-xl">Glory</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Phone / WhatsApp</p>
+                                    <p class="font-bold text-xl">0719 195 917</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Service Area</p>
+                                    <p class="font-bold">Your Local Neighborhood</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10 relative z-10">
+                        <p class="text-sm text-blue-200 mb-4">Follow our furry adventures</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand-darkBlue transition backdrop-blur-sm">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand-darkBlue transition backdrop-blur-sm">
+                                <i class="fa-brands fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white hover:text-brand-darkBlue transition backdrop-blur-sm">
+                                <i class="fa-brands fa-tiktok text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking CTA -->
+                <div class="p-10 md:w-3/5 flex flex-col justify-center items-center text-center bg-pattern">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-4xl mb-6 shadow-lg animate-pulse">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Book via WhatsApp</h3>
+                    <p class="text-gray-600 mb-8 max-w-md">The fastest way to schedule! Send us your dog's name, breed, and preferred service. We'll get back to you within the hour.</p>
+                    
+                    <a href="https://wa.me/254719195917?text=Hi%20Glory !%20I'm%20interested%20in%20booking%20a%20grooming%20session%20for%20my%20dog." target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-bold text-xl hover:shadow-2xl transition transform hover:-translate-y-1 flex items-center justify-center gap-3 group">
+                        <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i> 
+                        Chat on WhatsApp
+                    </a>
+                    
+                    <div class="mt-6 flex items-center gap-2 text-sm text-gray-500">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        Usually responds within 1 hour
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-200 w-full">
+                        <p class="text-sm text-gray-500 mb-3">Or send us an email</p>
+                        <a href="mailto:bookings@groomandgo.co" class="text-brand-darkBlue font-semibold hover:underline">bookings@groomandgo.co</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white relative pattern-grid">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-pink text-brand-darkPink text-sm font-bold mb-4">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Have Questions?</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Everything you need to know about our grooming and walking services.</p>
+            </div>
+
+            <!-- Grooming FAQs -->
+            <div class="mb-12 fade-in-up">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-brand-darkBlue">
+                        <i class="fa-solid fa-scissors"></i>
+                    </span>
+                    Grooming Services
+                </h3>
+                
+                <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">How long does a grooming session take?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Grooming sessions typically take 1.5 to 3 hours, depending on your dog's breed, size, coat condition, and the services requested. Puppies and first-time clients may require a little extra time to ensure they feel comfortable.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">What if my dog has sensitive skin or allergies?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Please inform us in advance. We can use hypoallergenic or medicated shampoos if needed. If your dog has a medical condition, we recommend consulting your vet before booking.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Do you groom puppies?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Yes! We offer puppy introduction grooming sessions to gently familiarize young dogs with the grooming process. Early exposure helps build positive grooming habits.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">What happens if my dog has matted fur?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Matted fur can be uncomfortable and sometimes painful for dogs. If severe matting is present, we may recommend a safe shave-down to prevent injury. We will always inform you before proceeding.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dog Walking FAQs -->
+            <div class="mb-12 fade-in-up" style="transition-delay: 100ms;">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-brand-darkBlue rounded-xl flex items-center justify-center text-white">
+                        <i class="fa-solid fa-person-walking"></i>
+                    </span>
+                    Dog Walking Services
+                </h3>
+                
+                <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">How long is each dog walking session?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Our standard walks are 30 minutes to 2 hours, depending on your dog's needs. We tailor the pace and duration based on your dog's age, energy level, and health condition.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Are the walks private or group walks?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            We primarily offer private one-on-one walks to ensure personalized attention and safety. Small group walks may be available for compatible dogs upon request.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Is my dog safe during walks?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Yes. Your dog's safety is our top priority. We use secure leashes and harnesses, avoid unsafe or overcrowded areas, monitor weather conditions, and stay alert at all times. We also follow your specific instructions regarding routes and preferences.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Do you walk puppies or senior dogs?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Absolutely. We adjust the pace and duration to suit puppies (shorter, gentler walks) and senior dogs (slow-paced, comfort-focused walks).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Helpful Questions -->
+            <div class="fade-in-up" style="transition-delay: 200ms;">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand-cream rounded-lg flex items-center justify-center text-brand-darkBlue text-sm">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                    Additional Information
+                </h3>
+                
+                <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">What vaccinations are required?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            For the safety of all pets, dogs should be up-to-date on core vaccinations before their appointment.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">How should I prepare my dog for their appointment?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Ensure your dog has had a bathroom break and avoid feeding a large meal before the appointment.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Can I stay during my dog's grooming session?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            To ensure a calm environment, we recommend allowing us to work one-on-one with your pet. However, we're happy to provide updates during the session if requested.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-6 hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                            <h4 class="font-bold text-gray-900 text-lg pr-4">Do you offer emergency or same-day bookings?</h4>
+                            <i class="fa-solid fa-chevron-down text-brand-darkBlue faq-icon flex-shrink-0"></i>
+                        </div>
+                        <div class="faq-answer px-6 text-gray-600 leading-relaxed">
+                            Same-day appointments may be available depending on our schedule. Please contact us directly via phone or WhatsApp for urgent requests.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still Have Questions CTA -->
+            <div class="mt-12 text-center fade-in-up" style="transition-delay: 300ms;">
+                <p class="text-gray-600 mb-4">Still have questions?</p>
+                <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-brand-darkBlue to-teal-600 text-white rounded-full font-bold hover:shadow-lg transition transform hover:-translate-y-1">
+                    <i class="fa-brands fa-whatsapp"></i> Contact Us Directly
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg \'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 transform rotate-3">
+                        <img src="https://i.imgur.com/WS1kvll.png " alt="Groom & Go Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl tracking-tight block">Groom & Go</span>
+                        <span class="text-xs text-gray-400">Fresh. Fluffy. Ready to Go.</span>
+                    </div>
+                </div>
+                <div class="flex gap-8 text-sm text-gray-400">
+                    <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#services" class="hover:text-white transition">Grooming</a>
+                    <a href="#walking" class="hover:text-white transition">Walking</a>
+                    <a href="#faq" class="hover:text-white transition">FAQ</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2024 Groom & Go. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // Close all other open FAQs in the same container
+            const container = element.closest('.bg-white');
+            container.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                if (openAnswer !== answer) {
+                    openAnswer.classList.remove('active');
+                    openAnswer.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotate');
+        }
+    </script>
+</body>
+</html>
